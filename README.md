@@ -49,7 +49,7 @@ Flags:
 
 ### Importing UnixDump in your project
 
-You can import UnixDump in your project and provide a callback that will be called on each captured UnixEvent. See the sample code below:
+You can import UnixDump in your project and provide a callback that will be called on each captured `UnixEvent`. See the sample code below:
 
 ```golang
 package main
@@ -65,7 +65,7 @@ import (
 func main() {
 	dump, err := unixdump.NewUnixDump(unixdump.Options{
 		EventHandler: handleEvent,
-    })
+	})
 	if err != nil {
 		fmt.Println(err)
 		return
