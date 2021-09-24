@@ -63,14 +63,14 @@ import (
 )
 
 func main() {
-	options := unixdump.Options{}
-	options.EventHandler = handleEvent
-	dump, err := unixdump.NewUnixDump(options)
+	dump, err := unixdump.NewUnixDump(unixdump.Options{
+		EventHandler: handleEvent,
+    })
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
-	if err := dump.Start(); err != nil {
+	if err = dump.Start(); err != nil {
 		fmt.Println(err)
 		return
 	}
@@ -85,7 +85,6 @@ func handleEvent(evt unixdump.UnixEvent) {
 	fmt.Println(evt)
 }
 
-// wait stops the main goroutine until an interrupt or kill signal is sent
 func wait() {
 	sig := make(chan os.Signal, 1)
 	signal.Notify(sig, os.Interrupt, os.Kill)
