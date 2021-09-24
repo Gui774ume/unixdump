@@ -46,3 +46,50 @@ Flags:
   -p, --pid int              pid filter, leave empty to capture everything
       --socket stringArray   list of unix sockets you want to listen on, leave empty to capture everything
 ```
+
+### Importing UnixDump in your project
+
+You can import UnixDump in your project and provide a callback that will be called on each captured UnixEvent. See the sample code below:
+
+```golang
+package main
+
+import (
+	"fmt"
+	"os"
+	"os/signal"
+
+	"github.com/Gui774ume/unixdump/pkg/unixdump"
+)
+
+func main() {
+	options := unixdump.Options{}
+	options.EventHandler = handleEvent
+	dump, err := unixdump.NewUnixDump(options)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	if err := dump.Start(); err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	wait()
+
+	_ = dump.Stop()
+	return
+}
+
+func handleEvent(evt unixdump.UnixEvent) {
+	fmt.Println(evt)
+}
+
+// wait stops the main goroutine until an interrupt or kill signal is sent
+func wait() {
+	sig := make(chan os.Signal, 1)
+	signal.Notify(sig, os.Interrupt, os.Kill)
+	<-sig
+	fmt.Println()
+}
+```
