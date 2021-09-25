@@ -1,5 +1,8 @@
 ## UnixDump
 
+[![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
 UnixDump is a small eBPF powered utility that can be used to dump unix socket traffic.
 
 ### System requirements
@@ -92,3 +95,8 @@ func wait() {
 	fmt.Println()
 }
 ```
+
+## License
+
+- The golang code is under Apache 2.0 License.
+- The eBPF programs are under the GPL v2 License.
