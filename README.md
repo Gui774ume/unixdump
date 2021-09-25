@@ -7,7 +7,7 @@ UnixDump is a small eBPF powered utility that can be used to dump unix socket tr
 
 ### System requirements
 
-This project was developed on an Ubuntu Hirsute machine (Linux Kernel 5.11).
+This project was developed on a Ubuntu Hirsute machine (Linux Kernel 5.11).
 
 - golang 1.16+
 - Kernel headers are expected to be installed in `lib/modules/$(uname -r)`, update the `Makefile` with their location otherwise.
